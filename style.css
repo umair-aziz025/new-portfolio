@@ -458,7 +458,7 @@ footer {
   top: 22px;
   right: 20px;
   /* left: 50%; */
-  transform: translateX(10%);
+  /* transform: translateX(10%); */
   z-index: 100;
 }
 
@@ -467,10 +467,11 @@ footer {
   background: #a65ecd;
   border: 1px solid var(--light-brown);
   color: #fff;
+  font-size: small;
   padding: 15px 20px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-weight: 300;
+  /* font-weight: 300; */
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s, transform 0.5s;
