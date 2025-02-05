@@ -4,13 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Umair Aziz | Cybersecurity Analyst</title>
-  <!-- Google Fonts for a tech vibe (previously Roboto Mono) -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet" /> -->
-  <!-- New Google Fonts: Open Sans, Poppins, Raleway -->
+  <!-- Google Fonts for a modern tech vibe -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@400;600&family=Raleway:wght@400;600&display=swap" rel="stylesheet">
-  
-  <!-- Include Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Font Awesome for Icons -->
   <script src="https://kit.fontawesome.com/3064bcc4f4.js" crossorigin="anonymous"></script>
   <!-- Main CSS -->
@@ -20,8 +15,18 @@
   <!-- GSAP and ScrollTrigger for Animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollTrigger.min.js"></script>
+  <!-- EmailJS Library -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){ 
+      emailjs.init("wcO91Fo0ZlaYlemYe"); // Initialize with your public key
+    })();
+  </script>
 </head>
 <body>
+  <!-- Container for custom alert notifications -->
+  <div id="alert-container"></div>
+
   <!-- Three.js Canvas Container for Avatar & Particle Effects -->
   <div id="avatar-container"></div>
 
@@ -61,7 +66,7 @@
         <img src="profilee.jpg" alt="Umair Aziz" />
       </div>
       <div class="hero-text">
-        <!-- These texts will be split into individual letter spans by JS -->
+        <!-- These texts will be split into individual letter spans by JS (except location) -->
         <h1 id="hero-name">Umair Aziz</h1>
         <h2 id="hero-title">Cybersecurity Analyst</h2>
         <p id="hero-location">Mirpur, AJK</p>
@@ -70,7 +75,7 @@
           <a href="mailto:umairaziz682@gmail.com"><i class="fa-solid fa-envelope"></i></a>
           <a href="https://github.com/umair-aziz025" target="_blank"><i class="fa-brands fa-github"></i></a>
           <a href="https://discord.com/users/866967214783463424" target="_blank"><i class="fa-brands fa-discord"></i></a>
-          <a href="https://linkedin.com/in/umairaziz001" target="_blank"><i class="fa-brands fa-linkedin"></i> <span></span></a>
+          <a href="https://linkedin.com/in/umairaziz001" target="_blank"><i class="fa-brands fa-linkedin"></i><span></span></a>
         </div>
       </div>
     </div>
@@ -78,7 +83,7 @@
 
   <!-- About Section -->
   <section id="about" class="section">
-    <h2><i class="fa-solid fa-user"></i> About Me</h2>
+    <h2 class="section-title"><i class="fa-solid fa-user"></i> About Me</h2>
     <div class="section-card">
       <p>
         Motivated cybersecurity analyst with strong skills in network security,
@@ -91,7 +96,7 @@
 
   <!-- Skills Section -->
   <section id="skills" class="section">
-    <h2><i class="fa-solid fa-code"></i> Skills</h2>
+    <h2 class="section-title"><i class="fa-solid fa-code"></i> Skills</h2>
     <div class="cards-grid">
       <div class="card">
         <h3><i class="fa-solid fa-laptop-code"></i> Programming</h3>
@@ -124,32 +129,46 @@
     </div>
   </section>
 
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Projects</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <h3>Incident Response Playbook</h3>
+        <p>Developed a playbook focusing on malware detection and real‑time response strategies.</p>
+      </div>
+      <div class="card">
+        <h3>Network Traffic Analysis</h3>
+        <p>Monitored and analyzed live traffic on a simulated network using IDS tools.</p>
+      </div>
+      <div class="card">
+        <h3>Vulnerability Assessment</h3>
+        <p>Identified vulnerabilities for a small business and recommended mitigation strategies.</p>
+      </div>
+      <div class="card">
+        <h3>Text File Parsing</h3>
+        <p>Parsed security‑related text files to extract critical data in real‑world scenarios.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Experience Section -->
   <section id="experience" class="section">
-    <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
+    <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
     <div class="section-card">
       <h3>Cybersecurity Analyst</h3>
       <p class="date">February 2024 - Present</p>
       <ul>
-        <li>
-          Analyzed network traffic logs and conducted forensic analysis to
-          identify and mitigate security threats.
-        </li>
-        <li>
-          Developed incident response plans for phishing and malware attacks,
-          improving security measures.
-        </li>
-        <li>
-          Assisted in creating training materials on secure coding and
-          cybersecurity awareness.
-        </li>
+        <li>Analyzed network traffic logs and conducted forensic analysis to identify and mitigate security threats.</li>
+        <li>Developed incident response plans for phishing and malware attacks, improving security measures.</li>
+        <li>Assisted in creating training materials on secure coding and cybersecurity awareness.</li>
       </ul>
     </div>
   </section>
 
   <!-- Education Section -->
   <section id="education" class="section">
-    <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+    <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
     <div class="cards-grid">
       <div class="card">
         <h3>B.Sc. in Information Technology</h3>
@@ -158,52 +177,14 @@
       <div class="card">
         <h3>Google Cybersecurity Professional Certificate</h3>
         <p>December 2023 - September 2024</p>
-        <p>
-          Courses on network security, incident response, risk management, and
-          security architecture.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <h2><i class="fa-solid fa-diagram-project"></i> Projects</h2>
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Incident Response Playbook</h3>
-        <p>
-          Developed a playbook focusing on malware detection and real-time
-          response strategies.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Network Traffic Analysis</h3>
-        <p>
-          Monitored and analyzed live traffic on a simulated network using IDS
-          tools.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Vulnerability Assessment</h3>
-        <p>
-          Identified vulnerabilities for a small business and recommended
-          mitigation strategies.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Text File Parsing</h3>
-        <p>
-          Parsed security-related text files to extract critical data in
-          real-world scenarios.
-        </p>
+        <p>Courses on network security, incident response, risk management, and security architecture.</p>
       </div>
     </div>
   </section>
 
   <!-- Certifications Section -->
   <section id="certifications" class="section">
-    <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
+    <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certifications</h2>
     <div class="cards-grid">
       <div class="card">
         <h3>Google Cybersecurity Professional Certificate</h3>
@@ -226,7 +207,7 @@
 
   <!-- Languages Section -->
   <section id="languages" class="section">
-    <h2><i class="fa-solid fa-language"></i> Languages</h2>
+    <h2 class="section-title"><i class="fa-solid fa-language"></i> Languages</h2>
     <div class="section-card">
       <p>English | Urdu</p>
     </div>
@@ -234,27 +215,23 @@
 
   <!-- Contact Section -->
   <section id="contact" class="section">
-    <h2><i class="fa-solid fa-envelope"></i> Contact Me</h2>
-    <form id="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+    <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact Me</h2>
+    <div class="section-content">
+      <form id="contact-form">
+        <input type="text" name="from_name" placeholder="Your Name" required />
+        <input type="email" name="reply_to" placeholder="Your Email" required />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button id="button" type="submit">Send Message</button>
+      </form>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <!-- Uncomment the option you prefer for "Mr. Umair": -->
-    
-    <!-- Option 1: Underline with purple -->
+    <!-- <p>&copy; 2025 Umair Aziz. All rights reserved.</p> -->
+    <!-- <p>With ❤️ by Umair Aziz</p> -->
     <p>Design by <span class="underline-brown"> Mr.</span><span class="underline-purple"> Umair</span> 🤎💜</p>
-    
-    <!-- Option 2: Text color purple and underline with brown -->
-    <!-- <p>Design by <span class="purple-text-brown-underline">Mr. Umair</span></p> -->
-    
-    <!-- Option 3: Text color brown and underline with purple -->
-    <!-- <p>Design by <span class="brown-text-purple-underline">Mr. Umair</span></p> -->
+    <!-- <p>"💜🤎کاش ہم مختلف حالات میں ملے ہوتے۔"</p> -->
   </footer>
 
   <!-- Main JavaScript -->

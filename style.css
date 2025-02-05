@@ -196,7 +196,6 @@ header {
 .hero-text h1,
 .hero-text h2,
 .hero-text p {
-  /* The actual element stays visible; each letter (span) starts hidden */
   opacity: 1 !important;
 }
 
@@ -208,7 +207,7 @@ header {
   transform: translateY(20px);
 }
 
-/* Horizontal line under hero name */
+/* Horizontal line under hero name (covering text width only) */
 #hero-name {
   position: relative;
   font-size: 3.5em;
@@ -263,17 +262,13 @@ header {
 .contact-links a {
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: var(--accent-light);
-  /* margin-right: 8px; */
-  /* border-radius: 50%; */
+  background: rgba(245, 245, 245, 0.1);
+  border-radius: 20px;
   width: 40px;
   height: 40px;
-  /* Removed border */
-  /* border: 1px solid var(--accent-light); */
-  background: rgba(245, 245, 245, 0.1);
-  border-radius: 20px;  /* Increased border-radius for a rounded look */
-  padding: 5px 10px;
   transition: background 0.3s, transform 0.3s, color 0.3s;
   font-size: 0.9em;
 }
@@ -295,7 +290,6 @@ header {
   color: var(--accent-light);
 }
 
-
 /* --- Section Base --- */
 .section {
   padding: 80px 20px;
@@ -303,7 +297,7 @@ header {
 }
 
 .section h2 {
-  display: inline-block; /* Only cover text width */
+  display: inline-block;
   position: relative;
   font-size: 2.5em;
   color: var(--neon-purple);
@@ -346,7 +340,7 @@ header {
 
 .card:hover,
 .section-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(1.02);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -416,11 +410,8 @@ footer {
   color: var(--accent-light);
 }
 
-/* --- Footer Styling Options for "Mr. Umair" --- */
-
-/* Option 1: Underline with purple */
+/* --- Footer Styling for "Mr. Umair" --- */
 .underline-brown {
-  /* color: #8B4513; */
   color: var(--neon-purple);
 }
 
@@ -430,23 +421,25 @@ footer {
   text-decoration-color: var(--neon-purple);
 }
 
-/* Option 2: Text color purple and underline with brown */
-/*
-.purple-text-brown-underline {
-  color: var(--neon-purple);
-  text-decoration: underline;
-  text-decoration-color: #8B4513;
+/* --- Custom Alert Styling --- */
+#alert-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
 }
-*/
 
-/* Option 3: Text color brown and underline with purple */
-/*
-.brown-text-purple-underline {
-  color: #8B4513;
-  text-decoration: underline;
-  text-decoration-color: var(--neon-purple);
+.custom-alert {
+  background: var(--neon-purple);
+  color: var(--dark-bg);
+  padding: 15px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.5s, transform 0.5s;
 }
-*/
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-/* Three.js & GSAP: 3D Robot Avatar, Particle Rain, Letter-by-Letter, & Scroll Animations */
+// Three.js & GSAP: 3D Robot Avatar, Particle Rain, Letter-by-Letter, & Scroll Animations
 
 let scene, camera, renderer, robot, particleSystem;
 
@@ -46,7 +46,7 @@ function init() {
   // Create the particle rain effect.
   createParticles();
 
-  // Animate hero text with letter-by-letter effect.
+  // Animate hero text with letter-by-letter effect for name and title.
   animateHeroText();
 
   // Animate section headings on scroll.
@@ -78,6 +78,9 @@ function init() {
     navLinks.classList.toggle("show");
   });
 
+  // Setup EmailJS integration for the contact form.
+  setupEmailJS();
+
   animate();
 }
 
@@ -86,8 +89,8 @@ function animateHeroText() {
   const heroName = document.getElementById("hero-name");
   const heroTitle = document.getElementById("hero-title");
   // const heroLocation = document.getElementById("hero-location");
-
-  // Split text into spans.
+  
+  // Split text into spans for heroName and heroTitle.
   splitTextToSpans(heroName);
   splitTextToSpans(heroTitle);
   // splitTextToSpans(heroLocation);
@@ -117,6 +120,9 @@ function animateHeroText() {
   //   delay: 1.5,
   //   ease: "power2.out"
   // });
+  
+  // Animate the contact links together.
+  gsap.fromTo(".contact-links", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 1.2 });
 }
 
 function splitTextToSpans(element) {
@@ -172,6 +178,48 @@ function animate() {
   particleSystem.geometry.attributes.position.needsUpdate = true;
 
   renderer.render(scene, camera);
+}
+
+// Setup EmailJS integration for the contact form.
+function setupEmailJS() {
+  const btn = document.getElementById('button');
+  const form = document.getElementById('contact-form');
+  
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    btn.value = 'Sending...';
+    
+    emailjs.sendForm("service_nr3dsx4", "template_i8lxe5s", this)
+      .then(() => {
+        btn.value = 'Send Message';
+        showCustomAlert("Your message has been sent successfully!", true);
+        form.reset();
+      }, (err) => {
+        btn.value = 'Send Message';
+        showCustomAlert("Failed to send message. Please try again later.", false);
+        console.error(JSON.stringify(err));
+      });
+  });
+}
+
+// Function to show a custom alert dialog.
+function showCustomAlert(message, success) {
+  const alertContainer = document.getElementById("alert-container");
+  const alertDiv = document.createElement("div");
+  alertDiv.className = "custom-alert";
+  alertDiv.textContent = message;
+  // Set background color based on success (green) or error (red)
+  alertDiv.style.background = success ? "--neon-purple" : "#dc3545";
+  alertDiv.style.color = "#fff";
+  alertContainer.appendChild(alertDiv);
+  
+  // Animate the alert in, then fade out after 3 seconds.
+  gsap.to(alertDiv, { opacity: 1, y: 0, duration: 0.5 });
+  setTimeout(() => {
+    gsap.to(alertDiv, { opacity: 0, y: -20, duration: 0.5, onComplete: () => {
+      alertContainer.removeChild(alertDiv);
+    }});
+  }, 3000);
 }
 
 // Handle window resize.
