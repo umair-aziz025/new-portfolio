@@ -451,8 +451,8 @@ footer {
   color: #fff;
   padding: 15px 20px;
   border-radius: 15px;
-  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
-  box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817); */
   font-weight: 600;
   opacity: 0;
   transform: translateY(-20px);
