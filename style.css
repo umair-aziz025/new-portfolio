@@ -123,8 +123,7 @@ header {
   }
   .nav-links.show {
     display: flex;
-    gap: 6px;
-    top: 83px;
+    gap: 8px;
     width: 180px;
     background: rgba(18, 18, 18, 0.888);
     transform: scale(1.1);
