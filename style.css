@@ -92,7 +92,8 @@ header {
 .hamburger {
   display: none;
   font-size: 1.5em;
-  color: var(--neon-purple);
+  /* color: var(--neon-purple); */
+  color: rgba(169, 113, 218, 0.817);
   cursor: pointer;
   transition: transform 0.3s;
 }
