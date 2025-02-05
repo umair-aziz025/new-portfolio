@@ -425,7 +425,8 @@ header {
 
 #contact-form button:hover {
   background: var(--neon-purple);
-  box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+  /* box-shadow: 0 6px 8px rgba(169, 113, 218, 0.817); */
+  border: 1px solid var(--light-brown);
   transform: scale(1.1);
   transition: transform 0.5s, background 0.3s;
 }
