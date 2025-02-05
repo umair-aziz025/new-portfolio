@@ -91,14 +91,16 @@ header {
 .hamburger {
   display: none;
   font-size: 1.5em;
-  color: var(--accent-light);
+  /* color: var(--accent-light); */
+  color: var(--neon-purple);
+  color: #be88e4;
   cursor: pointer;
   transition: transform 0.3s;
 }
 
 .hamburger.open {
   transform: scale(1.3);
-  color: #be88e4;
+  color: #d2a679;
   transition: transform 0.5s, color 0.3s;
 }
 
@@ -108,7 +110,10 @@ header {
     flex-direction: column;
     gap: 10px;
     background: rgba(18,18,18,0.95);
-    box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+    /* box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817); */
+    box-shadow: 0 4px 10px #d2a679;
+    /* border: 1px solid rgba(169, 113, 218, 0.817); */
+    /* border: 1px solid #d2a679; */
     position: fixed;
     top: 60px;
     right: 0;
