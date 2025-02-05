@@ -458,7 +458,7 @@ footer {
   top: 22px;
   right: 20px;
   /* left: 50%; */
-  transform: translateX(-20%);
+  transform: translateX(10%);
   z-index: 100;
 }
 
