@@ -38,6 +38,7 @@ header {
   width: 100%;
   z-index: 10;
   background: rgba(18, 18, 18, 0.95);
+  box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817);
   border-bottom: 1px solid var(--light-brown);
   transition: background 0.3s;
 }
@@ -171,6 +172,7 @@ header {
 .profile-pic-container {
   flex: 0 0 200px;
   border: 4px solid var(--neon-purple);
+  /* box-shadow: 0 0 20px rgba(169, 113, 218, 0.817); */
   border-radius: 50%;
   overflow: hidden;
   width: 200px;
@@ -196,6 +198,7 @@ header {
 .hero-text h1,
 .hero-text h2,
 .hero-text p {
+  /* The element itself remains visible; each letter (span) starts hidden */
   opacity: 1 !important;
 }
 
@@ -282,7 +285,9 @@ header {
 
 .contact-links a:hover {
   background: rgba(199, 92, 255, 0.3);
+  box-shadow: 0 8px 18px rgba(169, 113, 218, 0.817);
   transform: scale(1.1);
+  transition: transform 0.3s;
   color: var(--accent-light);
 }
 
@@ -297,7 +302,7 @@ header {
 }
 
 .section h2 {
-  display: inline-block;
+  display: inline-block; /* Only cover text width */
   position: relative;
   font-size: 2.5em;
   color: var(--neon-purple);
@@ -340,8 +345,8 @@ header {
 
 .card:hover,
 .section-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  transform: translateY(-10px) scale(1.02) !important;
+  box-shadow: 0 8px 20px rgba(169, 113, 218, 0.817);
 }
 
 .card h3 {
@@ -386,6 +391,13 @@ header {
   font-family: inherit;
 }
 
+#contact-form input:hover,
+#contact-form textarea:hover {
+  box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+  transform: scale(1.1);
+  transition: transform 0.4s, color 0.3s;
+}
+
 #contact-form button {
   padding: 12px;
   background: var(--neon-purple);
@@ -398,7 +410,10 @@ header {
 }
 
 #contact-form button:hover {
-  background: var(--light-brown);
+  background: var(--neon-purple);
+  box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+  transform: scale(1.1);
+  transition: transform 0.5s, background 0.3s;
 }
 
 /* --- Footer --- */
@@ -421,20 +436,23 @@ footer {
   text-decoration-color: var(--neon-purple);
 }
 
-/* --- Custom Alert Styling --- */
+/* --- Custom Alert Styling (iPhone-style) --- */
 #alert-container {
   position: fixed;
   top: 20px;
-  right: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
 }
 
 .custom-alert {
-  background: var(--neon-purple);
-  color: var(--dark-bg);
+  /* background: #007AFF;  iOS blue for success; will be overwritten for errors */
+  background: #b342f0;
+  color: #fff;
   padding: 15px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  border-radius: 15px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); */
+  box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817);
   font-weight: 600;
   opacity: 0;
   transform: translateY(-20px);

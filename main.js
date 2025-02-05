@@ -88,12 +88,11 @@ function animateHeroText() {
   // Get hero text elements.
   const heroName = document.getElementById("hero-name");
   const heroTitle = document.getElementById("hero-title");
-  // const heroLocation = document.getElementById("hero-location");
+  // Do not animate heroLocation; leave it static.
   
   // Split text into spans for heroName and heroTitle.
   splitTextToSpans(heroName);
   splitTextToSpans(heroTitle);
-  // splitTextToSpans(heroLocation);
 
   // Animate each letter sequentially.
   gsap.to("#hero-name span", {
@@ -112,14 +111,6 @@ function animateHeroText() {
     delay: 1,
     ease: "power2.out"
   });
-  // gsap.to("#hero-location span", {
-  //   opacity: 1,
-  //   y: 0,
-  //   stagger: 0.05,
-  //   duration: 0.8,
-  //   delay: 1.5,
-  //   ease: "power2.out"
-  // });
   
   // Animate the contact links together.
   gsap.fromTo(".contact-links", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, delay: 1.2 });
@@ -202,14 +193,15 @@ function setupEmailJS() {
   });
 }
 
-// Function to show a custom alert dialog.
+// Function to show a custom alert dialog (iPhone-style).
 function showCustomAlert(message, success) {
   const alertContainer = document.getElementById("alert-container");
   const alertDiv = document.createElement("div");
   alertDiv.className = "custom-alert";
   alertDiv.textContent = message;
-  // Set background color based on success (green) or error (red)
-  alertDiv.style.background = success ? "--neon-purple" : "#dc3545";
+  // Set background color based on success (iOS blue) or error (iOS red)
+  alertDiv.style.background = success ? "--neon-purple" : "#FF3B30";
+  // alertDiv.style.background = success ? "#007AFF" : "#FF3B30";
   alertDiv.style.color = "#fff";
   alertContainer.appendChild(alertDiv);
   
