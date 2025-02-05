@@ -124,7 +124,9 @@ header {
   .nav-links.show {
     display: flex;
     gap: 8px;
-    width: 180px;
+    top: 83px;
+    width: 100%;
+    align-items: center;
     background: rgba(18, 18, 18, 0.888);
     transform: scale(1.1);
     transition: transform 0.5s, background 0.7s;
