@@ -49,24 +49,26 @@ function init() {
   // Animate hero text with letter-by-letter effect for name and title.
   animateHeroText();
 
-  // Animate section headings on scroll.
+  // Animate section headings on scroll (animation re-triggers on each viewport entry).
   gsap.utils.toArray('.section h2').forEach((heading) => {
     gsap.fromTo(heading, { opacity: 0, y: -20 }, {
       opacity: 1, y: 0, duration: 1,
       scrollTrigger: {
         trigger: heading,
         start: "top 80%",
+        toggleActions: "restart none none none"
       }
     });
   });
   
-  // Animate cards on scroll.
+  // Animate cards on scroll (re-triggering on each entry).
   gsap.utils.toArray('.card, .section-card').forEach((card) => {
     gsap.fromTo(card, { opacity: 0, y: 20 }, {
       opacity: 1, y: 0, duration: 0.8,
       scrollTrigger: {
         trigger: card,
         start: "top 90%",
+        toggleActions: "restart none none none"
       }
     });
   });
@@ -76,6 +78,16 @@ function init() {
   const navLinks = document.getElementById("nav-links");
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("show");
+    hamburger.classList.toggle("open");
+  });
+  // When a nav-link is clicked, remove the "show" class and animate hamburger back.
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (navLinks.classList.contains("show")) {
+        navLinks.classList.remove("show");
+        hamburger.classList.remove("open");
+      }
+    });
   });
 
   // Setup EmailJS integration for the contact form.
@@ -201,7 +213,6 @@ function showCustomAlert(message, success) {
   alertDiv.textContent = message;
   // Set background color based on success (iOS blue) or error (iOS red)
   alertDiv.style.background = success ? "--neon-purple" : "#FF3B30";
-  // alertDiv.style.background = success ? "#007AFF" : "#FF3B30";
   alertDiv.style.color = "#fff";
   alertContainer.appendChild(alertDiv);
   

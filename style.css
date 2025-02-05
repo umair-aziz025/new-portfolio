@@ -93,6 +93,13 @@ header {
   font-size: 1.5em;
   color: var(--accent-light);
   cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.hamburger.open {
+  transform: scale(1.3);
+  color: #be88e4;
+  transition: transform 0.5s, color 0.3s;
 }
 
 /* --- Responsive Navigation --- */
@@ -101,6 +108,7 @@ header {
     flex-direction: column;
     gap: 10px;
     background: rgba(18,18,18,0.95);
+    box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
     position: fixed;
     top: 60px;
     right: 0;
@@ -110,6 +118,9 @@ header {
   }
   .nav-links.show {
     display: flex;
+    background: rgba(18, 18, 18, 0.888);
+    transform: scale(1.1);
+    transition: transform 0.8s, background 0.7s;
   }
   .hamburger {
     display: block;
@@ -172,7 +183,6 @@ header {
 .profile-pic-container {
   flex: 0 0 200px;
   border: 4px solid var(--neon-purple);
-  /* box-shadow: 0 0 20px rgba(169, 113, 218, 0.817); */
   border-radius: 50%;
   overflow: hidden;
   width: 200px;
@@ -198,7 +208,6 @@ header {
 .hero-text h1,
 .hero-text h2,
 .hero-text p {
-  /* The element itself remains visible; each letter (span) starts hidden */
   opacity: 1 !important;
 }
 
@@ -302,7 +311,7 @@ header {
 }
 
 .section h2 {
-  display: inline-block; /* Only cover text width */
+  display: inline-block;
   position: relative;
   font-size: 2.5em;
   color: var(--neon-purple);
@@ -446,13 +455,12 @@ footer {
 }
 
 .custom-alert {
-  /* background: #007AFF;  iOS blue for success; will be overwritten for errors */
+  /* background: #007AFF; */
   background: #ad5cd9;
   color: #fff;
   padding: 15px 20px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  /* box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817); */
   font-weight: 600;
   opacity: 0;
   transform: translateY(-20px);
