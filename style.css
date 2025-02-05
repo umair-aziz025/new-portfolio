@@ -460,7 +460,9 @@ footer {
 }
 
 .custom-alert {
-  background: #007AFF;  /* iOS blue for success; overwritten for errors */
+  /* background: #007AFF; */
+  background: #a65ecd;
+  border: 1px solid var(--light-brown);
   color: #fff;
   padding: 15px 20px;
   border-radius: 15px;

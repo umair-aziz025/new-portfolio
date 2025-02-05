@@ -220,7 +220,7 @@ function showCustomAlert(message, success) {
   alertDiv.className = "custom-alert";
   alertDiv.textContent = message;
   // Set background color based on success (iOS blue) or error (iOS red)
-  alertDiv.style.background = success ? "#007AFF" : "#FF3B30";
+  alertDiv.style.background = success ? "--neon-purple" : "#FF3B30";
   alertDiv.style.color = "#fff";
   alertContainer.appendChild(alertDiv);
   
