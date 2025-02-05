@@ -13,7 +13,7 @@
 }
 
 body {
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Poppins', 'Open Sans', 'Raleway', sans-serif;
   background: var(--dark-bg);
   color: var(--accent-light);
   line-height: 1.6;
@@ -252,6 +252,7 @@ header {
   margin-bottom: 1em;
 }
 
+/* --- Contact Links Styling in Hero Section --- */
 .contact-links {
   display: flex;
   flex-wrap: wrap;
@@ -264,9 +265,16 @@ header {
   align-items: center;
   text-decoration: none;
   color: var(--accent-light);
-  border: 1px solid var(--accent-light);
+  /* margin-right: 8px; */
+  /* border-radius: 50%; */
+  width: 40px;
+  height: 40px;
+  /* Removed border */
+  /* border: 1px solid var(--accent-light); */
+  background: rgba(245, 245, 245, 0.1);
+  border-radius: 20px;  /* Increased border-radius for a rounded look */
   padding: 5px 10px;
-  transition: all 0.3s;
+  transition: background 0.3s, transform 0.3s, color 0.3s;
   font-size: 0.9em;
 }
 
@@ -277,14 +285,16 @@ header {
   transition: color 0.3s;
 }
 
+.contact-links a:hover {
+  background: rgba(199, 92, 255, 0.3);
+  transform: scale(1.1);
+  color: var(--accent-light);
+}
+
 .contact-links a:hover i {
   color: var(--accent-light);
 }
 
-.contact-links a:hover {
-  background: var(--neon-purple);
-  border-color: var(--neon-purple);
-}
 
 /* --- Section Base --- */
 .section {
@@ -337,7 +347,6 @@ header {
 .card:hover,
 .section-card:hover {
   transform: translateY(-10px);
-  /* transform: translateY(-10px) !important; */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
 }
 
@@ -406,6 +415,38 @@ footer {
   border-top: 1px solid var(--light-brown);
   color: var(--accent-light);
 }
+
+/* --- Footer Styling Options for "Mr. Umair" --- */
+
+/* Option 1: Underline with purple */
+.underline-brown {
+  /* color: #8B4513; */
+  color: var(--neon-purple);
+}
+
+.underline-purple {
+  color: var(--neon-purple);
+  text-decoration: none;
+  text-decoration-color: var(--neon-purple);
+}
+
+/* Option 2: Text color purple and underline with brown */
+/*
+.purple-text-brown-underline {
+  color: var(--neon-purple);
+  text-decoration: underline;
+  text-decoration-color: #8B4513;
+}
+*/
+
+/* Option 3: Text color brown and underline with purple */
+/*
+.brown-text-purple-underline {
+  color: #8B4513;
+  text-decoration: underline;
+  text-decoration-color: var(--neon-purple);
+}
+*/
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {

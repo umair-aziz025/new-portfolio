@@ -1,4 +1,4 @@
-// Three.js & GSAP: 3D Robot Avatar, Particle Rain, Letter-by-Letter, & Scroll Animations
+/* Three.js & GSAP: 3D Robot Avatar, Particle Rain, Letter-by-Letter, & Scroll Animations */
 
 let scene, camera, renderer, robot, particleSystem;
 
