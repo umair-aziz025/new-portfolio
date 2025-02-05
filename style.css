@@ -110,8 +110,8 @@ header {
     flex-direction: column;
     gap: 10px;
     background: rgba(18,18,18,0.95);
-    /* box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817); */
-    box-shadow: 0 4px 8px #d2a679;
+    box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+    /* box-shadow: 0 4px 8px #d2a679; */
     /* border: 1px solid rgba(169, 113, 218, 0.817); */
     /* border: 1px solid #d2a679; */
     position: fixed;
