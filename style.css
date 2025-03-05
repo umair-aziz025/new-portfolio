@@ -1,24 +1,44 @@
 /* --- Color Variables & Global Styles --- */
 :root {
+  /* Dark Theme Variables */
   --neon-purple: #c75cff;
   --light-brown: #d2a679;
   --dark-bg: #121212;
   --accent-light: #f5f5f5;
+  --card-bg: #1e1e1e;
+  --input-bg: #1e1e1e;
+  --navbar-bg: rgba(18, 18, 18, 0.95);
+  --hero-overlay-gradient: linear-gradient(270deg, #121212, #1a1a1a, #121212);
 }
 
+.light-theme {
+  /* Light Theme Overrides */
+  --neon-purple: #A294F9;      /* Softer purple */
+  --light-brown: #6A9C89;      /* Greenish secondary accent */
+  --dark-bg: #E9EFEC;         /* Light background */
+  --accent-light: #16423C;     /* Dark text for contrast */
+  --card-bg: #E5D9F2;          /* Light card background */
+  --input-bg: #F5EFFF;         /* Light input background */
+  --navbar-bg: rgba(233, 239, 236, 0.95);
+  --hero-overlay-gradient: linear-gradient(270deg, #E9EFEC, #D1E9F6, #E9EFEC);
+}
+
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none;  /* Disable text selection globally */
+  user-select: none; /* Disable text selection globally */
 }
 
+/* Smooth transitions for background and text colors */
 body {
   font-family: 'Poppins', 'Open Sans', 'Raleway', sans-serif;
   background: var(--dark-bg);
   color: var(--accent-light);
   line-height: 1.6;
   scroll-behavior: smooth;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* --- Three.js Canvas Container --- */
@@ -31,6 +51,7 @@ body {
   z-index: -2;
   pointer-events: none;
   background: var(--dark-bg);
+  transition: background-color 0.5s ease;
 }
 
 /* --- Navigation & Header --- */
@@ -38,10 +59,11 @@ header {
   position: fixed;
   width: 100%;
   z-index: 10;
-  background: rgba(18, 18, 18, 0.95);
-  box-shadow: 0 4px 8px rgba(169, 113, 218, 0.817);
+  background: var(--navbar-bg);
+  box-shadow: 0 4px 8px var(--neon-purple);
   border-bottom: 1px solid var(--light-brown);
-  transition: background 0.3s;
+  /* Smoothly transition header background, border, and shadow */
+  transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 .navbar {
@@ -51,25 +73,28 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all 0.5s ease;
 }
 
+/* Logo */
 .navbar .logo a {
-  color: var(--light-brown); /* Default brown color */
+  color: var(--light-brown);
   font-size: 1.2em;
   text-decoration: none;
   letter-spacing: 2px;
-  transition: color 0.3s;
+  transition: color 0.5s ease;
 }
-
 .navbar .logo a:hover,
 .navbar .logo a.scrolled {
   color: var(--neon-purple);
 }
 
+/* Nav links */
 .nav-links {
   list-style: none;
   display: flex;
   gap: 15px;
+  transition: background-color 0.5s ease;
 }
 
 .nav-links li a {
@@ -79,7 +104,7 @@ header {
   text-decoration: none;
   color: var(--accent-light);
   font-weight: 700;
-  transition: transform 0.3s, color 0.3s;
+  transition: transform 0.5s ease, color 0.5s ease;
   font-size: 0.95em;
 }
 
@@ -92,16 +117,14 @@ header {
 .hamburger {
   display: none;
   font-size: 1.5em;
-  /* color: var(--neon-purple); */
-  color: rgba(169, 113, 218, 0.817);
+  color: var(--neon-purple);
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.5s ease, color 0.5s ease;
 }
 
 .hamburger.open {
-  transform: scale(1.3);
-  color: #d2a679;
-  transition: transform 0.5s, color 0.3s;
+  transform: scale(1.2);
+  color: var(--light-brown);
 }
 
 /* --- Responsive Navigation --- */
@@ -109,14 +132,15 @@ header {
   .nav-links {
     flex-direction: column;
     gap: 10px;
-    background: rgba(18,18,18,0.95);
-    box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+    background: var(--navbar-bg);
+    box-shadow: 0 8px 10px var(--neon-purple);
     position: fixed;
     top: 60px;
     right: 0;
     width: 200px;
     padding: 20px;
     display: none;
+    transition: background 0.5s ease;
   }
   .nav-links.show {
     display: flex;
@@ -124,12 +148,18 @@ header {
     top: 83px;
     width: 100%;
     align-items: center;
-    background: rgba(18, 18, 18, 0.888);
+    background: var(--navbar-bg);
     transform: scale(1.1);
-    transition: transform 0.5s, background 0.7s;
+    transition: transform 0.5s ease, background 0.7s ease;
   }
   .hamburger {
     display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburger {
+    display: none;
   }
 }
 
@@ -142,9 +172,10 @@ header {
   justify-content: center;
   overflow: hidden;
   padding-top: 80px; /* Account for fixed navbar */
+  transition: background 0.5s ease;
 }
 
-/* Background image for hero */
+/* Hero background image for dark theme */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -154,6 +185,15 @@ header {
   background: url('hero-bg.jpg') no-repeat center center/cover;
   filter: brightness(0.6) blur(3px);
   z-index: 0;
+  transition: background 0.5s ease;
+}
+
+/* For light theme, use a different background image */
+.light-theme .hero-bg {
+  /* display: none; */
+  /* background: url('lhero-bg.jpg') no-repeat center center/cover; */
+  background: url('hero-bg7.jpg') no-repeat center center/cover;
+  filter: brightness(0.8) blur(3px);
 }
 
 /* Animated gradient overlay */
@@ -163,17 +203,24 @@ header {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(270deg, #121212, #1a1a1a, #121212);
+  background: var(--hero-overlay-gradient);
   background-size: 600% 600%;
   animation: gradientAnimation 20s ease infinite;
   opacity: 0.7;
   z-index: 1;
+  transition: background 0.5s ease;
 }
 
 @keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero-content {
@@ -184,6 +231,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 30px;
+  transition: opacity 0.5s ease;
 }
 
 .profile-pic-container {
@@ -193,7 +241,7 @@ header {
   overflow: hidden;
   width: 200px;
   height: 200px;
-  transition: transform 0.5s;
+  transition: transform 0.5s ease;
 }
 
 .profile-pic-container img {
@@ -209,12 +257,14 @@ header {
 .hero-text {
   max-width: 500px;
   text-align: left;
+  transition: color 0.5s ease;
 }
 
 .hero-text h1,
 .hero-text h2,
 .hero-text p {
   opacity: 1 !important;
+  transition: color 0.5s ease;
 }
 
 .hero-text h1 span,
@@ -223,9 +273,10 @@ header {
   display: inline-block;
   opacity: 0;
   transform: translateY(20px);
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Horizontal line under hero name (covering text width only) */
+/* Horizontal line under hero name */
 #hero-name {
   position: relative;
   font-size: 3.5em;
@@ -233,6 +284,7 @@ header {
   text-shadow: 0 0 10px var(--neon-purple);
   margin-bottom: 0.2em;
   display: inline-block;
+  transition: color 0.5s ease;
 }
 
 #hero-name::after {
@@ -262,11 +314,51 @@ header {
   font-size: 2em;
   color: var(--light-brown);
   margin-bottom: 0.5em;
+  transition: color 0.5s ease;
 }
 
 .hero-text p {
   font-size: 1.2em;
   margin-bottom: 1em;
+  transition: color 0.5s ease;
+}
+
+/* --- Global Floating Theme Toggle Button --- */
+.theme-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.094);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  color: var(--accent-light);
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Remove focus outline */
+.theme-toggle:focus {
+  outline: none;
+}
+
+.theme-toggle:hover {
+  color: var(--neon-purple);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* --- Contact Links Styling in Hero Section --- */
@@ -275,6 +367,7 @@ header {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .contact-links a {
@@ -287,7 +380,7 @@ header {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  transition: background 0.3s, transform 0.3s, color 0.3s;
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
   font-size: 0.9em;
 }
 
@@ -295,14 +388,13 @@ header {
   width: 20px;
   text-align: center;
   color: var(--neon-purple);
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .contact-links a:hover {
   background: rgba(199, 92, 255, 0.3);
   box-shadow: 0 8px 18px rgba(169, 113, 218, 0.817);
   transform: scale(1.1);
-  transition: transform 0.3s;
   color: var(--accent-light);
 }
 
@@ -314,15 +406,17 @@ header {
 .section {
   padding: 80px 20px;
   text-align: center;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 .section h2 {
-  display: inline-block; /* Only cover text width */
+  display: inline-block;
   position: relative;
   font-size: 2.5em;
   color: var(--neon-purple);
   margin-bottom: 30px;
-  opacity: 0; /* For GSAP scroll animations */
+  opacity: 0;
+  transition: color 0.5s ease;
 }
 
 .section h2::before {
@@ -345,34 +439,37 @@ header {
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  transition: transform 0.5s ease;
 }
 
 .card,
 .section-card {
-  background: #1e1e1e;
+  background: var(--card-bg);
   border: 1px solid var(--light-brown);
   border-radius: 8px;
   padding: 20px;
-  opacity: 0; /* For scroll-triggered animation */
+  opacity: 0;
   transform: translateY(20px);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .card:hover,
 .section-card:hover {
   transform: translateY(-10px) scale(1.02) !important;
-  box-shadow: 0 8px 20px rgba(169, 113, 218, 0.817);
+  box-shadow: 0 8px 20px var(--neon-purple);
 }
 
 .card h3 {
   margin-bottom: 10px;
   color: var(--neon-purple);
+  transition: color 0.5s ease;
 }
 
 .card p,
 .section-card p {
   font-size: 0.95em;
   color: var(--accent-light);
+  transition: color 0.5s ease;
 }
 
 /* --- Experience List --- */
@@ -380,10 +477,12 @@ header {
   text-align: left;
   list-style-type: disc;
   margin: 10px 20px;
+  transition: transform 0.5s ease;
 }
 
 .section-card li {
   margin-bottom: 8px;
+  transition: transform 0.5s ease;
 }
 
 /* --- Contact Form --- */
@@ -393,24 +492,26 @@ header {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  transition: background 0.5s ease;
 }
 
 #contact-form input,
 #contact-form textarea {
   width: 100%;
   padding: 12px;
-  background: #1e1e1e;
+  background: var(--input-bg);
   border: 1px solid var(--light-brown);
   border-radius: 4px;
   color: var(--accent-light);
   font-family: inherit;
+  transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
 }
 
 #contact-form input:hover,
 #contact-form textarea:hover {
-  box-shadow: 0 8px 10px rgba(169, 113, 218, 0.817);
+  box-shadow: 0 8px 10px var(--neon-purple);
   transform: scale(1.1);
-  transition: transform 0.4s, color 0.3s;
+  transition: transform 0.5s ease, color 0.5s ease;
 }
 
 #contact-form button {
@@ -421,60 +522,61 @@ header {
   font-size: 1em;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.5s ease;
 }
 
 #contact-form button:hover {
   background: var(--neon-purple);
-  box-shadow: 0 6px 8px rgba(169, 113, 218, 0.817);
+  box-shadow: 0 6px 8px var(--neon-purple);
   border: 1px solid var(--light-brown);
   transform: scale(1.1);
-  transition: transform 0.5s, background 0.3s;
+  transition: transform 0.5s ease, background 0.5s ease;
 }
 
 /* --- Footer --- */
 footer {
-  background: #1e1e1e;
+  background: var(--card-bg);
   padding: 20px;
   text-align: center;
   border-top: 1px solid var(--light-brown);
   color: var(--accent-light);
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 /* --- Footer Styling for "Mr. Umair" --- */
 .underline-brown {
   color: var(--neon-purple);
+  transition: color 0.5s ease;
 }
 
 .underline-purple {
   color: var(--neon-purple);
   text-decoration: none;
   text-decoration-color: var(--neon-purple);
+  transition: color 0.5s ease;
 }
 
 /* --- Custom Alert Styling (iPhone-style) --- */
 #alert-container {
   position: fixed;
-  top: 22px;
+  top: 10%;
   right: 20px;
-  /* left: 50%; */
-  /* transform: translateX(10%); */
   z-index: 100;
+  transition: opacity 0.5s ease;
 }
 
 .custom-alert {
-  /* background: #007AFF; */
-  background: #a65ecd;
+  background: var(--neon-purple);
   border: 1px solid var(--light-brown);
   color: #fff;
   font-size: small;
-  padding: 15px 20px;
+  top: 60px;
+  padding: 12px 18px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  /* font-weight: 300; */
   opacity: 0;
   transform: translateY(-20px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* --- Responsive Adjustments --- */
@@ -493,13 +595,14 @@ footer {
   .nav-links {
     flex-direction: column;
     gap: 10px;
-    background: rgba(18,18,18,0.95);
+    background: var(--navbar-bg);
     position: fixed;
     top: 60px;
     right: 0;
     width: 200px;
     padding: 20px;
     display: none;
+    transition: background 0.5s ease;
   }
   .nav-links.show {
     display: flex;
