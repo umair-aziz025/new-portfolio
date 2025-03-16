@@ -51,7 +51,7 @@ function init() {
   // Animate hero text with letter-by-letter effect.
   animateHeroText();
 
-  // Animate section headings on scroll (re-trigger on each viewport entry).
+  // Animate section headings on scroll.
   gsap.utils.toArray(".section h2").forEach((heading) => {
     gsap.fromTo(
       heading,
@@ -69,7 +69,7 @@ function init() {
     );
   });
 
-  // Animate cards on scroll (re-trigger on each entry).
+  // Animate cards on scroll.
   gsap.utils.toArray(".card, .section-card").forEach((card) => {
     gsap.fromTo(
       card,
@@ -91,7 +91,7 @@ function init() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
   const themeToggle = document.getElementById("theme-toggle");
-
+  
   hamburger.addEventListener("click", () => {
     navLinks.classList.toggle("show");
     hamburger.classList.toggle("open");
@@ -102,6 +102,7 @@ function init() {
       themeToggle.style.zIndex = "1000";
     }
   });
+
   // When a nav-link is clicked, remove the "show" class and restore toggle's z-index.
   document.querySelectorAll(".nav-links a").forEach((link) => {
     link.addEventListener("click", () => {
@@ -112,6 +113,7 @@ function init() {
       }
     });
   });
+
   // Hide mobile nav when user scrolls down and restore toggle's z-index.
   window.addEventListener("scroll", () => {
     if (navLinks.classList.contains("show")) {
@@ -119,19 +121,10 @@ function init() {
       hamburger.classList.remove("open");
       themeToggle.style.zIndex = "1000";
     }
-    // Add blur effect on non-hero sections and footer when scrolling past 100px.
-    if (window.scrollY > 100) {
-      document.body.classList.add("scrolled");
-    } else {
-      document.body.classList.remove("scrolled");
-    }
   });
 
   // Setup EmailJS integration for the contact form.
   setupEmailJS();
-
-  // Initialize theme toggle functionality.
-  setupThemeToggle();
 
   animate();
 }
@@ -141,6 +134,7 @@ function animateHeroText() {
   const heroTitle = document.getElementById("hero-title");
   splitTextToSpans(heroName);
   splitTextToSpans(heroTitle);
+
   gsap.to("#hero-name span", {
     opacity: 1,
     y: 0,
@@ -181,12 +175,14 @@ function createParticles() {
   const particleCount = 500;
   const geometry = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
+
   for (let i = 0; i < particleCount; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 50;
     positions[i * 3 + 1] = Math.random() * 50;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 50;
   }
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
   const material = new THREE.PointsMaterial({
     color: document.body.classList.contains("light-theme") ? "#A294F9" : "#c75cff",
     size: 0.2,
@@ -200,6 +196,7 @@ function createParticles() {
 function animate() {
   requestAnimationFrame(animate);
   robot.rotation.y += 0.01;
+
   const positions = particleSystem.geometry.attributes.position.array;
   for (let i = 0; i < positions.length; i += 3) {
     positions[i + 1] -= 0.1;
@@ -214,9 +211,11 @@ function animate() {
 function setupEmailJS() {
   const btn = document.getElementById("button");
   const form = document.getElementById("contact-form");
+
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     btn.value = "Sending...";
+
     emailjs.sendForm("service_nr3dsx4", "template_i8lxe5s", this).then(
       () => {
         btn.value = "Send Message";
@@ -240,6 +239,7 @@ function showCustomAlert(message, success) {
   alertDiv.style.background = success ? "var(--neon-purple)" : "var(--light-brown)";
   alertDiv.style.color = "#fff";
   alertContainer.appendChild(alertDiv);
+
   gsap.to(alertDiv, { opacity: 1, y: 0, duration: 0.5 });
   setTimeout(() => {
     gsap.to(alertDiv, {
@@ -253,27 +253,24 @@ function showCustomAlert(message, success) {
   }, 3000);
 }
 
-function setupThemeToggle() {
-  const toggleBtn = document.getElementById("theme-toggle");
-  const currentTheme = localStorage.getItem("theme") || "dark";
-  if (currentTheme === "light") {
-    document.body.classList.add("light-theme");
-    toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+const themeToggle = document.getElementById("theme-toggle");
+themeToggle.addEventListener("click", toggleTheme);
+
+function toggleTheme() {
+  const body = document.body;
+  const isLight = body.classList.toggle("light-theme");
+  const icon = themeToggle.querySelector("i");
+
+  if (isLight) {
+    icon.classList.remove("fa-sun");
+    icon.classList.add("fa-moon");
   } else {
-    document.body.classList.remove("light-theme");
-    toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    icon.classList.remove("fa-moon");
+    icon.classList.add("fa-sun");
   }
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light-theme");
-    if (document.body.classList.contains("light-theme")) {
-      toggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-      localStorage.setItem("theme", "light");
-    } else {
-      toggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-      localStorage.setItem("theme", "dark");
-    }
-    updateThreeTheme(document.body.classList.contains("light-theme"));
-  });
+
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  updateThreeTheme(isLight);
 }
 
 function updateThreeTheme(isLight) {
@@ -290,8 +287,9 @@ function updateThreeTheme(isLight) {
 
 if (localStorage.getItem("theme") === "light") {
   document.body.classList.add("light-theme");
-  document.getElementById("theme-toggle").innerHTML =
-    '<i class="fa-solid fa-moon"></i>';
+  const icon = themeToggle.querySelector("i");
+  icon.classList.remove("fa-sun");
+  icon.classList.add("fa-moon");
 }
 
 window.addEventListener("resize", () => {
