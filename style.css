@@ -23,12 +23,12 @@
   --hero-overlay-gradient: linear-gradient(270deg, #E9EFEC, #D1E9F6, #E9EFEC);
 }
 
-/* Global Reset */
+/* Global Reset and Disable Text Selection */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  user-select: none; /* Disable text selection globally */
+  user-select: none;
 }
 
 /* Smooth transitions for background and text colors */
@@ -62,7 +62,6 @@ header {
   background: var(--navbar-bg);
   box-shadow: 0 4px 8px var(--neon-purple);
   border-bottom: 1px solid var(--light-brown);
-  /* Smoothly transition header background, border, and shadow */
   transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
@@ -96,7 +95,6 @@ header {
   gap: 15px;
   transition: background-color 0.5s ease;
 }
-
 .nav-links li a {
   display: flex;
   align-items: center;
@@ -107,10 +105,33 @@ header {
   transition: transform 0.5s ease, color 0.5s ease;
   font-size: 0.95em;
 }
-
 .nav-links li a:hover {
   transform: scale(1.1);
   color: var(--neon-purple);
+}
+
+/* Theme toggle button */
+#theme-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.094);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  color: var(--accent-light);
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+  animation: float 3s ease-in-out infinite;
+}
+#theme-toggle:focus { outline: none; }
+#theme-toggle:hover { color: var(--neon-purple); }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
 }
 
 /* Hamburger menu styles */
@@ -121,7 +142,6 @@ header {
   cursor: pointer;
   transition: transform 0.5s ease, color 0.5s ease;
 }
-
 .hamburger.open {
   transform: scale(1.2);
   color: var(--light-brown);
@@ -171,11 +191,9 @@ header {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding-top: 80px; /* Account for fixed navbar */
+  padding-top: 80px;
   transition: background 0.5s ease;
 }
-
-/* Hero background image for dark theme */
 .hero-bg {
   position: absolute;
   top: 0;
@@ -187,16 +205,10 @@ header {
   z-index: 0;
   transition: background 0.5s ease;
 }
-
-/* For light theme, use a different background image */
 .light-theme .hero-bg {
-  /* display: none; */
-  /* background: url('lhero-bg.jpg') no-repeat center center/cover; */
   background: url('light-bg.jpg') no-repeat center center/cover;
   filter: brightness(0.8) blur(3px);
 }
-
-/* Animated gradient overlay */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -210,19 +222,11 @@ header {
   z-index: 1;
   transition: background 0.5s ease;
 }
-
 @keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -233,7 +237,6 @@ header {
   gap: 30px;
   transition: opacity 0.5s ease;
 }
-
 .profile-pic-container {
   flex: 0 0 200px;
   border: 4px solid var(--neon-purple);
@@ -243,30 +246,25 @@ header {
   height: 200px;
   transition: transform 0.5s ease;
 }
-
 .profile-pic-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .profile-pic-container:hover img {
   transform: scale(1.05);
 }
-
 .hero-text {
   max-width: 500px;
   text-align: left;
   transition: color 0.5s ease;
 }
-
 .hero-text h1,
 .hero-text h2,
 .hero-text p {
   opacity: 1 !important;
   transition: color 0.5s ease;
 }
-
 .hero-text h1 span,
 .hero-text h2 span,
 .hero-text p span {
@@ -275,8 +273,6 @@ header {
   transform: translateY(20px);
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
-
-/* Horizontal line under hero name */
 #hero-name {
   position: relative;
   font-size: 3.5em;
@@ -286,7 +282,6 @@ header {
   display: inline-block;
   transition: color 0.5s ease;
 }
-
 #hero-name::after {
   content: "";
   position: absolute;
@@ -298,25 +293,16 @@ header {
   border-radius: 2px;
   animation: lineEntrance 1s ease-out forwards;
 }
-
 @keyframes lineEntrance {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-  to {
-    width: 100%;
-    opacity: 1;
-  }
+  from { width: 0; opacity: 0; }
+  to { width: 100%; opacity: 1; }
 }
-
 .hero-text h2 {
   font-size: 2em;
   color: var(--light-brown);
   margin-bottom: 0.5em;
   transition: color 0.5s ease;
 }
-
 .hero-text p {
   font-size: 1.2em;
   margin-bottom: 1em;
@@ -339,26 +325,12 @@ header {
   transition: color 0.3s, background 0.3s;
   animation: float 3s ease-in-out infinite;
 }
-
-/* Remove focus outline */
-.theme-toggle:focus {
-  outline: none;
-}
-
-.theme-toggle:hover {
-  color: var(--neon-purple);
-}
-
+.theme-toggle:focus { outline: none; }
+.theme-toggle:hover { color: var(--neon-purple); }
 @keyframes float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
 }
 
 /* --- Contact Links Styling in Hero Section --- */
@@ -369,7 +341,6 @@ header {
   margin-top: 10px;
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
-
 .contact-links a {
   display: flex;
   align-items: center;
@@ -383,32 +354,30 @@ header {
   transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
   font-size: 0.9em;
 }
-
 .contact-links a i {
   width: 20px;
   text-align: center;
   color: var(--neon-purple);
   transition: color 0.3s ease;
 }
-
 .contact-links a:hover {
   background: rgba(199, 92, 255, 0.3);
   box-shadow: 0 8px 18px rgba(169, 113, 218, 0.817);
   transform: scale(1.1);
+  transition: transform 0.3s ease;
   color: var(--accent-light);
 }
-
 .contact-links a:hover i {
   color: var(--accent-light);
 }
 
 /* --- Section Base --- */
 .section {
+  position: relative; /* Added for pseudo-element overlay */
   padding: 80px 20px;
   text-align: center;
   transition: background 0.5s ease, color 0.5s ease;
 }
-
 .section h2 {
   display: inline-block;
   position: relative;
@@ -418,7 +387,6 @@ header {
   opacity: 0;
   transition: color 0.5s ease;
 }
-
 .section h2::before {
   content: "";
   position: absolute;
@@ -432,6 +400,21 @@ header {
   animation: lineEntrance 1s ease-out forwards;
 }
 
+/* --- Gradient Blur Overlay for Non-Hero Sections & Footer --- */
+.section:not(#hero)::before,
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  backdrop-filter: blur(5px);
+  background: linear-gradient(45deg, rgba(169, 113, 218, 0.1), rgba(199, 124, 255, 0.1));
+}
+
 /* --- Cards & Grid Layouts --- */
 .cards-grid {
   display: grid;
@@ -441,7 +424,6 @@ header {
   margin: 0 auto;
   transition: transform 0.5s ease;
 }
-
 .card,
 .section-card {
   background: var(--card-bg);
@@ -452,19 +434,16 @@ header {
   transform: translateY(20px);
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
-
 .card:hover,
 .section-card:hover {
   transform: translateY(-10px) scale(1.02) !important;
   box-shadow: 0 8px 20px var(--neon-purple);
 }
-
 .card h3 {
   margin-bottom: 10px;
   color: var(--neon-purple);
   transition: color 0.5s ease;
 }
-
 .card p,
 .section-card p {
   font-size: 0.95em;
@@ -479,7 +458,6 @@ header {
   margin: 10px 20px;
   transition: transform 0.5s ease;
 }
-
 .section-card li {
   margin-bottom: 8px;
   transition: transform 0.5s ease;
@@ -494,7 +472,6 @@ header {
   gap: 15px;
   transition: background 0.5s ease;
 }
-
 #contact-form input,
 #contact-form textarea {
   width: 100%;
@@ -506,14 +483,12 @@ header {
   font-family: inherit;
   transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
 }
-
 #contact-form input:hover,
 #contact-form textarea:hover {
   box-shadow: 0 8px 10px var(--neon-purple);
   transform: scale(1.1);
   transition: transform 0.5s ease, color 0.5s ease;
 }
-
 #contact-form button {
   padding: 12px;
   background: var(--neon-purple);
@@ -524,7 +499,6 @@ header {
   cursor: pointer;
   transition: background 0.5s ease;
 }
-
 #contact-form button:hover {
   background: var(--neon-purple);
   box-shadow: 0 6px 8px var(--neon-purple);
@@ -535,6 +509,7 @@ header {
 
 /* --- Footer --- */
 footer {
+  position: relative;
   background: var(--card-bg);
   padding: 20px;
   text-align: center;
@@ -542,20 +517,29 @@ footer {
   color: var(--accent-light);
   transition: background 0.5s ease, color 0.5s ease;
 }
-
-/* --- Footer Styling for "Mr. Umair" --- */
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  backdrop-filter: blur(5px);
+  background: linear-gradient(45deg, rgba(169, 113, 218, 0.1), rgba(199, 124, 255, 0.1));
+}
 .underline-brown {
   color: var(--neon-purple);
   transition: color 0.5s ease;
 }
-
 .underline-purple {
   color: var(--neon-purple);
   text-decoration: none;
   text-decoration-color: var(--neon-purple);
   transition: color 0.5s ease;
 }
-
+  
 /* --- Custom Alert Styling (iPhone-style) --- */
 #alert-container {
   position: fixed;
@@ -564,7 +548,6 @@ footer {
   z-index: 100;
   transition: opacity 0.5s ease;
 }
-
 .custom-alert {
   background: var(--neon-purple);
   border: 1px solid var(--light-brown);
